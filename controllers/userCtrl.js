@@ -1,6 +1,7 @@
 const Users = require('../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const Payments = require('../models/paymentModel')
 
 const userCtrl = {
     register: async (req, res) => {
@@ -74,12 +75,15 @@ const userCtrl = {
     refreshToken: (req, res) => {
         try {
             const rf_token = req.cookies.refreshToken
-            if (!rf_token)
+            if (!rf_token) {
                 return res.status(400).json({ msg: "Please Login or Register" })
+            }
 
             jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-                if (err)
+                if (err) {
                     res.status(400).json({ msg: "Please Login or Register" })
+                }
+
                 const accessToken = createAccessToken({ id: user.id })
                 res.json({ accessToken })
             })
@@ -96,6 +100,27 @@ const userCtrl = {
             res.json(user)
         } catch (err) {
             res.status(500).json({ msg: err.message })
+        }
+    },
+    addCart: async (req, res) => {
+        try {
+            const user = await Users.findById(req.user.id)
+            if (!user) return res.status(400).json({ msg: "User does not exist" })
+            await Users.findOneAndUpdate({ _id: req.user.id }, {
+                cart: req.body.cart
+            })
+            return res.json({ msg: "Added to cart" })
+        } catch (err) {
+            res.status(500).json({ msg: err.message })
+        }
+    },
+    history: async (req, res) => {
+        try {
+            const history = await Payments.find({ user_id: req.user.id })
+            res.json(history)
+        } catch (err) {
+            console.log(err.message)
+            return res.status(500).json({ msg: err.message })
         }
     }
 }
