@@ -49,7 +49,7 @@ function OrderDetails() {
                 <tbody>
                     {orderDetails.cart.map(item => (
                         <tr key={item._id}>
-                            <td><img src={item.images.url} /></td>
+                            <td><img alt="order" src={item.images.url} /></td>
                             <td>{item.title}</td>
                             <td>{item.quantity}</td>
                             <td>$ {item.price * item.quantity}</td>

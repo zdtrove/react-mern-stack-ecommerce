@@ -14,13 +14,12 @@ function Header() {
     const [cart] = state.userAPI.cart
     const logoutUser = async () => {
         await axios.get('/user/logout')
-        localStorage.removeItem('firstLogin')
         window.location.href = "/"
     }
     const adminRouter = () => {
         return (
             <>
-                <li><Link to="/create_product">Create Products</Link></li>
+                <li><Link to="/create-product">Create Products</Link></li>
                 <li><Link to="/category">Categories</Link></li>
             </>
         )
