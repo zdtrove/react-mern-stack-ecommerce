@@ -27,6 +27,7 @@ function Pages() {
             <Route path="/history/:id" exact component={isLogged ? OrderDetails : NotFound} />
             <Route path="/category" exact component={isAdmin ? Categories : NotFound} />
             <Route path="/create-product" exact component={isAdmin ? CreateProduct : NotFound} />
+            <Route path="/edit-product/:id" exact component={isAdmin ? CreateProduct : NotFound} />
             <Route path="/cart" exact component={Cart} />
 
             <Route path="*" exact component={NotFound} />

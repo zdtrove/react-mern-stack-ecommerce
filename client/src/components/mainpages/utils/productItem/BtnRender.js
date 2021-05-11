@@ -14,7 +14,7 @@ function BtnRender({ product }) {
                     <Link id="btn_buy" to="#!">
                         Delete
                     </Link>
-                    <Link id="btn_view" to={`/edit_product/${product._id}`}>
+                    <Link id="btn_view" to={`/edit-product/${product._id}`}>
                         Edit
                     </Link>
                 </>
