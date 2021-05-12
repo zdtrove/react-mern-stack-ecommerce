@@ -1,0 +1,31 @@
+@media (max-width: 500px) {
+  .App {
+    padding: 0 10px;
+  }
+  .detail {
+    font-size: 100%;
+    padding: 0;
+  }
+  .filter-menu {
+    input {
+      margin: 0;
+    }
+    .sort {
+      flex: 1;
+      select {
+        width: 100%;
+        min-width: 290px;
+        margin: 5px 0;
+      }
+    }
+  }
+  .login-page {
+    padding: 30px 10px;
+  }
+  .delete-all {
+    margin: 20px 0;
+  }
+  .create-product .upload {
+    margin: 20px 0;
+  }
+}
